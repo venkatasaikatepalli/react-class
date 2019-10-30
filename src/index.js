@@ -1,29 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css'
-import Design from './Design'
-
+// import Design from './Design'
 
 class App extends React.Component {
     state = {
-        mydata: "react",
-        message: "reactdsd"
+        mydata: "react"
+    }
+
+    render() {
+        return(
+            <div>
+                <input type="text" value={this.state.mydata} onChange={
+                    (e)=>{
+                        this.setState({
+                            mydata: e.target.value
+                        })
+                    }
+                    }></input>
+                    <Decide name={this.state.mydata}></Decide>
+            </div> 
+        )
+    }
+}
+
+function Decide(props) {
+    if(props.name === 'react')
+        return <App1></App1>;
+    return <div>sai</div>
+}
+
+class App1 extends React.Component {
+    state = {
+        mydata: "react"
+    }
+
+    componentDidMount() {
+        console.log('created');
+    }
+
+    componentWillUnmount() {
+        console.log('destroyed');
     }
 
     render() {
         return (
             <div>
-                <h1 style={{color:'red',fontSize:'100px'}}>This is main heading</h1>
-                <input type="text" value={this.state.mydata} onChange={
-                    (e)=>{
-                        this.setState({
-                            mydata: e.target.value,
-                            message: e.target.value
-                        })
-                    }
-                    }></input>
-                    {this.state.message}
-                <Design name={this.state.mydata} city="vijayawada"></Design>
+                this is react
             </div>
         )
     }
